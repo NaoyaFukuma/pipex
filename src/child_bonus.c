@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:46:51 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 00:04:09 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/01 01:36:31 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exe_child(char *argv[], char *envp[], t_info *info)
 				sub_dup2(info->pipe_tube[2 * i - 2], info->outfile);
 			else
 				sub_dup2(info->pipe_tube[2 * i - 2], info->pipe_tube[2 * i
-						+ 1]);
+					+ 1]);
 			close_all_pipes(info);
 			info->cmd_args = ft_split(argv[2 + info->heredoc_flag + i], ' ');
 			info->cmd = get_cmd(info->cmd_paths, info->cmd_args[0]);
