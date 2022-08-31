@@ -1,4 +1,6 @@
 *.sh
 *test*
+infile
 outfile
 pipex
+tmp

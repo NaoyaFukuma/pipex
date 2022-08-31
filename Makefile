@@ -6,7 +6,7 @@
 #    By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/29 00:02:32 by nfukuma           #+#    #+#              #
-#    Updated: 2022/08/29 15:20:21 by nfukuma          ###   ########.fr        #
+#    Updated: 2022/09/01 01:30:18 by nfukuma          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,22 +16,21 @@ CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -rf
 
-#for heder file and path
-HEADER_SRCS	=	pipex.h pipex_bonus.h
-HEADER_DIR	=	includes/
-HEADER		=	$(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
-#for mandatory file and path
-SRCNAMES_M	=	main.c
-SRCDIR_M	=	mandatory/
-SRCS_M		=	$(addprefix $(SRCDIR_M), $(SRCNAMES_M))
-OBJS_M		=	$(SRCS_M:%.c=%.o)
+#for sorc file and path mondatory or bonus
+ifeq			($(WITH_BONUS), 1)
+SRCNAMES_B	=	child_bonus.c free_or_close_utils_bonus.c heredoc_bonus.c pipex_bonus.c
+SRCDIR		=	src/
+SRCS_B		=	$(addprefix $(SRCDIR), $(SRCNAMES_B))
+OBJS		=	$(SRCS_B:%.c=%.o)
+else
+SRCNAMES	=	child.c free_or_close_utils.c pipex.c
+SRCDIR		=	src/
+SRCS		=	$(addprefix $(SRCDIR), $(SRCNAMES))
+OBJS		=	$(SRCS:%.c=%.o)
+endif
 
-#for bonus file and path
-SRCNAMES_B	=
-SRCDIR_B	=	bonus/
-SRCS_B		=	$(addprefix $(SRCDIR_B), $(SRCNAMES_B))
-OBJS_B		=	$(SRCS_B:%.c=%.o)
+
 
 #.a library path
 LIBDIR		=	./libft
@@ -40,19 +39,16 @@ GNLDIR		=	./libgnl
 #target rule
 all	:	$(NAME)
 
-$(NAME)	:	$(OBJS_M)
+$(NAME)	:	$(OBJS)
 	make -C $(LIBDIR)
 	make -C $(GNLDIR)
-	$(CC) $(CFLAGS) -I../includes -L $(LIBDIR) -L $(GNLDIR) -lft -lgnl -o $@ $^
+	$(CC) $(CFLAGS) -L $(LIBDIR) -L $(GNLDIR) -lft -lgnl -o $@ $^
 
-bonus	:	$(OBJS_B)
-	make -C $(LIBDIR)
-	make -C $(GNLDIR)
-	$(CC) $(CFLAGS) -I../includes -L $(LIBDIR) -L $(GNLDIR) -lft -lgnl -o $(NAME) $(OBJS_B)
+bonus	:
+	make WITH_BONUS=1
 
 clean	:
-	$(RM) $(OBJS_M)
-	$(RM) $(OBJS_B)
+	$(RM) ./src/child_bonus.o ./src/free_or_close_utils_bonus.o ./src/heredoc_bonus.o ./src/pipex_bonus.o ./src/child.o ./src/free_or_close_utils.o ./src/pipex.o
 	make -C $(LIBDIR) clean;
 	make -C $(GNLDIR) clean;
 
@@ -63,4 +59,4 @@ fclean	:	clean
 
 re:	fclean all
 
-.PHONY:		all bonus clean fclean re
+.PHONY:		all clean fclean re bonus

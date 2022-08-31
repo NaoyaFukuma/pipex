@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:10:58 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 00:26:36 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/01 00:02:35 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 // Examples
 // ----mondatory----
@@ -68,6 +68,7 @@
 
 typedef struct s_info
 {
+	int		heredoc_flag;
 	int		infile;
 	int		outfile;
 	int		cmd_count;
@@ -87,5 +88,9 @@ void		close_all_pipes(t_info *info);
 
 /* in child.c */
 void		exe_child(char *argv[], char *envp[], t_info *info);
+
+/* in heredoc */
+int			check_heredoc(char *argv1, t_info *info);
+void		run_heredoc(char *limitter, t_info *info);
 
 #endif
