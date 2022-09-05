@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:46:51 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 01:36:25 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/02 14:53:02 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void	exe_child(char *argv[], char *envp[], t_info *info)
 					+ 1]);
 			close_all_pipes(info);
 			info->cmd_args = ft_split(argv[2 + i], ' ');
+			if (info->cmd_args == NULL)
+				exit(1);
 			info->cmd = get_cmd(info->cmd_paths, info->cmd_args[0]);
 			if (!info->cmd)
-				child_free(info);
+				exit(1);
 			execve(info->cmd, info->cmd_args, envp);
 		}
 	}
@@ -56,7 +58,11 @@ static char	*get_cmd(char **paths, char *argv_cmd)
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
+		if (tmp == NULL)
+			exit(1);
 		cmd = ft_strjoin(tmp, argv_cmd);
+		if (cmd == NULL)
+			exit(1);
 		free(tmp);
 		if (access(cmd, 0) == 0)
 			return (cmd);

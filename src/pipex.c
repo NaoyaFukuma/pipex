@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 23:15:21 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 00:26:18 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/02 12:59:14 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	set_info(int argc, char *argv[], char *envp[], t_info *info)
 {
 	get_infile(argv, info);
 	get_outfile(argv[argc - 1], info);
+	info->cmd_count = argc - 3;
 	info->pipe_count = (info->cmd_count - 1) * 2;
 	while (ft_strncmp("PATH=", *envp, 5))
 		envp++;
