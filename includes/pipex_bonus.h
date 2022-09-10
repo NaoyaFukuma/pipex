@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:10:58 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/11 00:54:17 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/11 01:56:24 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,23 @@
 
 typedef struct s_info
 {
-	int		heredoc_flag;
-	int		infile_fd;
-	int		outfile_fd;
-	int		cmd_count;
-	int		pipe_count;
-	int		*pipe_fd;
-}			t_info;
+	int	heredoc_flag;
+	int	infile_fd;
+	int	outfile_fd;
+	int	cmd_count;
+	int	pipe_count;
+	int	*pipe_fd;
+}		t_info;
 
 /* in utils_bonus.c */
-void		util_close_all_fd(t_info *info);
-void		util_perror_exit(char *error_message);
+void	util_close_all_fd(t_info *info);
+void	util_perror_exit(char *error_message);
 
 /* in exe_child_bonus.c */
 void	exe_child(int i, t_info *info, char **argv, char **envp);
 
 /* in run_heredoc_bonus.c */
-int			check_heredoc(char *argv1, t_info *info);
-void		run_heredoc(char *limitter, t_info *info);
+int		check_heredoc(char *argv1, t_info *info);
+void	run_heredoc(char *limitter, t_info *info);
 
 #endif

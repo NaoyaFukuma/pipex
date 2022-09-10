@@ -6,7 +6,7 @@
 #    By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/29 00:02:32 by nfukuma           #+#    #+#              #
-#    Updated: 2022/09/11 01:18:58 by nfukuma          ###   ########.fr        #
+#    Updated: 2022/09/11 01:59:18 by nfukuma          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,12 +18,17 @@ RM			=	rm -rf
 
 
 #for sorc file and path mondatory or bonus
-SRCNAMES_B	=	exe_child_bonus.c utils_bonus.c run_heredoc_bonus.c pipex_bonus.c
+SRCNAMES_B	=	main_bonus.c \
+				exe_child_bonus.c \
+				run_heredoc_bonus.c \
+				utils_bonus.c
 SRCDIR_B		=	src_b/
 SRCS_B		=	$(addprefix $(SRCDIR_B), $(SRCNAMES_B))
 OBJS_B		=	$(SRCS_B:%.c=%.o)
 
-SRCNAMES	=	exe_child.c utils.c pipex.c
+SRCNAMES	=	main.c \
+				exe_child.c \
+				utils.c
 SRCDIR		=	src/
 SRCS		=	$(addprefix $(SRCDIR), $(SRCNAMES))
 OBJS		=	$(SRCS:%.c=%.o)

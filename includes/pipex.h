@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:10:58 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/11 01:39:47 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/11 01:56:54 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@
 
 typedef struct s_info
 {
-	int		infile_fd;
-	int		outfile_fd;
-	int		*pipe_fd;
-}			t_info;
+	int	infile_fd;
+	int	outfile_fd;
+	int	*pipe_fd;
+}		t_info;
 
 /* in utils.c */
-void		util_close_all_fd(t_info *info);
-void		util_perror_exit(char *error_message);
+void	util_close_all_fd(t_info *info);
+void	util_perror_exit(char *error_message);
 
 /* in exe_child.c */
 void	exe_child(int i, t_info *info, char **argv, char **envp);
