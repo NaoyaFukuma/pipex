@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   heredoc_bonus.c                                    :+:      :+:    :+:   */
+/*   run_heredoc_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 23:21:42 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 00:04:20 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/11 00:52:27 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex_bonus.h"
-
-int	check_heredoc(char *argv1, t_info *info)
-{
-	if (!ft_strncmp("here_doc", argv1, 9))
-	{
-		info->heredoc_flag = 1;
-		return (6);
-	}
-	else
-	{
-		info->heredoc_flag = 0;
-		return (5);
-	}
-}
 
 void	run_heredoc(char *limitter, t_info *info)
 {
@@ -33,10 +19,10 @@ void	run_heredoc(char *limitter, t_info *info)
 
 	file = open(".heredoc_tmp", O_CREAT | O_WRONLY | O_TRUNC, 0000644);
 	if (file < 0)
-		exit(1);
+		util_perror_exit("Error: open");
 	while (1)
 	{
-		write(1, "heredoc> ", 9);
+		write(1, "pipe heredoc> ", 14);
 		buf = get_next_line(0);
 		if (!ft_strncmp(limitter, buf, ft_strlen(limitter)))
 			break ;
@@ -45,10 +31,10 @@ void	run_heredoc(char *limitter, t_info *info)
 	}
 	free(buf);
 	close(file);
-	info->infile = open(".heredoc_tmp", O_RDONLY);
-	if (info->infile < 0)
+	info->infile_fd = open(".heredoc_tmp", O_RDONLY);
+	if (info->infile_fd < 0)
 	{
 		unlink(".heredoc_tmp");
-		exit(1);
+		util_perror_exit("Error: open");
 	}
 }

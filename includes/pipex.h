@@ -6,7 +6,7 @@
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 10:10:58 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/01 00:26:36 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/11 01:39:47 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,16 @@
 
 typedef struct s_info
 {
-	int		infile;
-	int		outfile;
-	int		cmd_count;
-	int		pipe_count;
-	int		*pipe_tube;
-	pid_t	pid;
-	char	**cmd_paths;
-	char	*cmd;
-	char	**cmd_args;
-	int		*status_ptr;
+	int		infile_fd;
+	int		outfile_fd;
+	int		*pipe_fd;
 }			t_info;
 
-/* in free_or_close_utils */
-void		child_free(t_info *info);
-void		parent_free(t_info *info);
-void		close_all_pipes(t_info *info);
+/* in utils.c */
+void		util_close_all_fd(t_info *info);
+void		util_perror_exit(char *error_message);
 
-/* in child.c */
-void		exe_child(char *argv[], char *envp[], t_info *info);
+/* in exe_child.c */
+void	exe_child(int i, t_info *info, char **argv, char **envp);
 
 #endif
