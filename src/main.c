@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 23:15:21 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/11 01:40:19 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/11 02:04:35 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	open_infile_fd(char *infile_path, t_info *info)
 static void	open_outfile_fd(char *outfile_path, t_info *info)
 {
 	info->outfile_fd = open(outfile_path, O_CREAT | O_WRONLY | O_TRUNC,
-				0000644);
+			0000644);
 	if (info->outfile_fd < 0)
 		util_perror_exit("Error: open");
 }
