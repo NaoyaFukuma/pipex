@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_bonus.c                                      :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 23:15:21 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/11 01:30:21 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/13 10:49:18 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	while (++i < info.cmd_count)
 		if (waitpid(-1, NULL, 0) == -1)
 			util_perror_exit("Error: wait");
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 static void	validate_arg_and_set_info(int argc, char **argv, t_info *info)
