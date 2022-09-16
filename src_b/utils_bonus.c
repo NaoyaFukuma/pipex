@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nfukuma <nfukuma@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/29 16:45:00 by nfukuma           #+#    #+#             */
-/*   Updated: 2022/09/11 00:48:44 by nfukuma          ###   ########.fr       */
+/*   Updated: 2022/09/16 13:51:29 by nfukuma          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	util_close_all_fd(t_info *info)
 
 void	util_perror_exit(char *error_message)
 {
+	ft_putstr_fd("\x1b[31m", STDERR_FILENO);
 	perror(error_message);
-	exit(1);
+	ft_putstr_fd("\x1b[39m", STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }
